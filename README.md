@@ -18,10 +18,6 @@
   </a>
 </p>
 
-<h1 align="center">
-    <img alt="ignite-call" title="#ignite-call" src="./.github/logo.svg" />
-</h1>
-
 <p align="center">
   <a href="#about">About</a> •
   <a href="#features">Features</a> •
