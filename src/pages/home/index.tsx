@@ -3,6 +3,7 @@ import { Heading, Text } from '@ignite-ui/react';
 import { Container, Hero, Preview } from './styles';
 
 import previewImage from '@/assets/api-preview.png';
+import { ClaimUsernameForm } from './components/ClaimUsernameForm';
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
           Conecte seu calendário e permita que as pessoas marquem agendamentos
           no seu tempo livre. Criar conta com Google
         </Text>
+        <ClaimUsernameForm />
       </Hero>
       <Preview>
         <Image
