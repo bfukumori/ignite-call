@@ -33,7 +33,7 @@ export default function Register() {
     resolver: zodResolver(registerFormSchema),
   });
 
-  const { query } = useRouter();
+  const router = useRouter();
 
   async function handleRegister(data: RegisterFormData) {
     try {
@@ -41,6 +41,8 @@ export default function Register() {
         name: data.name,
         username: data.username,
       });
+
+      await router.push('/register/connect-calendar');
     } catch (error) {
       if (error instanceof AxiosError) {
         alert(error.response?.data.message);
@@ -67,7 +69,7 @@ export default function Register() {
             prefix="ignite.com/"
             placeholder="seu-usuario"
             {...register('username')}
-            defaultValue={query.username}
+            defaultValue={router.query.username}
           />
           {errors.username && (
             <FormError size="sm">{errors.username.message}</FormError>

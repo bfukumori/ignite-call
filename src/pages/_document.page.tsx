@@ -4,7 +4,7 @@ import { getCssText } from '@ignite-ui/react';
 
 export default function Document() {
   return (
-    <Html>
+    <Html lang="pt-br">
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -16,6 +16,10 @@ export default function Document() {
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
           rel="stylesheet"
+        />
+        <meta
+          name="description"
+          content="Agende reuniões com clientes de forma rápida e prática e sincronize com o seu calendário do Google"
         />
         <style
           id="stitches"
