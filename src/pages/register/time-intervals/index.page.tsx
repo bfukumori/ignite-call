@@ -1,4 +1,6 @@
+import { convertTimeStringToMinutes } from '@/utils/convert-time-string-in-minutes';
 import { getWeekDays } from '@/utils/get-week-days';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Button,
   Checkbox,
@@ -13,6 +15,7 @@ import { z } from 'zod';
 
 import { Container, Header } from '../styles';
 import {
+  FormError,
   IntervalBox,
   IntervalDay,
   IntervalInputs,
@@ -20,7 +23,42 @@ import {
   IntervalsContainer,
 } from './styles';
 
-const timeIntervalsFormSchema = z.object({});
+const timeIntervalsFormSchema = z.object({
+  intervals: z
+    .array(
+      z.object({
+        weekDay: z.number().min(0).max(6),
+        enabled: z.boolean(),
+        startTime: z.string(),
+        endTime: z.string(),
+      })
+    )
+    .length(7)
+    .transform((intervals) => intervals.filter((interval) => interval.enabled))
+    .refine((intervals) => intervals.length > 0, {
+      message: 'Você precisa selecionar pelo menos um dia da semana!',
+    })
+    .transform((intervals) =>
+      intervals.map((interval) => ({
+        weekDay: interval.weekDay,
+        startTimeInMinutes: convertTimeStringToMinutes(interval.startTime),
+        endTimeInMinutes: convertTimeStringToMinutes(interval.endTime),
+      }))
+    )
+    .refine(
+      (intervals) =>
+        intervals.every(
+          (interval) =>
+            interval.endTimeInMinutes - 60 >= interval.startTimeInMinutes
+        ),
+      {
+        message:
+          'O horário de término deve ser pelo menos 1h distante do início.',
+      }
+    ),
+});
+
+type TimeIntervalsFormInput = z.input<typeof timeIntervalsFormSchema>;
 
 export default function TimeIntervals() {
   const {
@@ -29,7 +67,8 @@ export default function TimeIntervals() {
     handleSubmit,
     watch,
     formState: { isSubmitting, errors },
-  } = useForm({
+  } = useForm<TimeIntervalsFormInput>({
+    resolver: zodResolver(timeIntervalsFormSchema),
     defaultValues: {
       intervals: [
         { weekDay: 0, enabled: false, startTime: '08:00', endTime: '18:00' },
@@ -52,7 +91,9 @@ export default function TimeIntervals() {
 
   const intervals = watch('intervals');
 
-  async function handleSetTimeIntervals() {}
+  async function handleSetTimeIntervals(data: TimeIntervalsFormInput) {
+    console.log(data);
+  }
 
   return (
     <Container>
@@ -102,7 +143,11 @@ export default function TimeIntervals() {
             </IntervalItem>
           ))}
         </IntervalsContainer>
-        <Button type="submit">
+        {errors.intervals && (
+          <FormError size="sm">{errors.intervals.message}</FormError>
+        )}
+
+        <Button disabled={isSubmitting} type="submit">
           Próximo passo <ArrowRight />
         </Button>
       </IntervalBox>
