@@ -86,7 +86,7 @@ export function Calendar({ onDateSelected, selectedDate }: CalendarProps) {
       .map((_, i) => {
         return firstDayInCurrentMonth.subtract(i + 1, 'day');
       })
-      .toReversed();
+      .reverse();
 
     const nextMonthFillArray = Array.from({
       length: 7 - (lastWeekday + 1),
