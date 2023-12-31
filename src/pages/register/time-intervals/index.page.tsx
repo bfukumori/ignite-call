@@ -24,6 +24,7 @@ import {
 } from './styles';
 import { api } from '@/lib/axios';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 
 const timeIntervalsFormSchema = z.object({
   intervals: z
@@ -103,61 +104,64 @@ export default function TimeIntervals() {
   }
 
   return (
-    <Container>
-      <Header>
-        <Heading as="strong">Quase lá</Heading>
-        <Text>
-          Defina o intervalo de horários que você está disponível em cada dia da
-          semana.
-        </Text>
-        <MultiStep size={4} currentStep={3} />
-      </Header>
+    <>
+      <NextSeo title="Selecione sua disponibilidade | Ignite Call" noindex />
+      <Container>
+        <Header>
+          <Heading as="strong">Quase lá</Heading>
+          <Text>
+            Defina o intervalo de horários que você está disponível em cada dia
+            da semana.
+          </Text>
+          <MultiStep size={4} currentStep={3} />
+        </Header>
 
-      <IntervalBox as="form" onSubmit={handleSubmit(handleSetTimeIntervals)}>
-        <IntervalsContainer>
-          {fields.map((field, index) => (
-            <IntervalItem key={field.id}>
-              <IntervalDay>
-                <Controller
-                  name={`intervals.${index}.enabled`}
-                  control={control}
-                  render={({ field }) => (
-                    <Checkbox
-                      onCheckedChange={field.onChange}
-                      checked={field.value}
-                    />
-                  )}
-                />
+        <IntervalBox as="form" onSubmit={handleSubmit(handleSetTimeIntervals)}>
+          <IntervalsContainer>
+            {fields.map((field, index) => (
+              <IntervalItem key={field.id}>
+                <IntervalDay>
+                  <Controller
+                    name={`intervals.${index}.enabled`}
+                    control={control}
+                    render={({ field }) => (
+                      <Checkbox
+                        onCheckedChange={field.onChange}
+                        checked={field.value}
+                      />
+                    )}
+                  />
 
-                <Text>{weekDays[field.weekDay]}</Text>
-              </IntervalDay>
-              <IntervalInputs>
-                <TextInput
-                  disabled={!intervals[index].enabled}
-                  size="sm"
-                  type="time"
-                  step={60}
-                  {...register(`intervals.${index}.startTime`)}
-                />
-                <TextInput
-                  disabled={!intervals[index].enabled}
-                  size="sm"
-                  type="time"
-                  step={60}
-                  {...register(`intervals.${index}.endTime`)}
-                />
-              </IntervalInputs>
-            </IntervalItem>
-          ))}
-        </IntervalsContainer>
-        {errors.intervals && (
-          <FormError size="sm">{errors.intervals.message}</FormError>
-        )}
+                  <Text>{weekDays[field.weekDay]}</Text>
+                </IntervalDay>
+                <IntervalInputs>
+                  <TextInput
+                    disabled={!intervals[index].enabled}
+                    size="sm"
+                    type="time"
+                    step={60}
+                    {...register(`intervals.${index}.startTime`)}
+                  />
+                  <TextInput
+                    disabled={!intervals[index].enabled}
+                    size="sm"
+                    type="time"
+                    step={60}
+                    {...register(`intervals.${index}.endTime`)}
+                  />
+                </IntervalInputs>
+              </IntervalItem>
+            ))}
+          </IntervalsContainer>
+          {errors.intervals && (
+            <FormError size="sm">{errors.intervals.message}</FormError>
+          )}
 
-        <Button disabled={isSubmitting} type="submit">
-          Próximo passo <ArrowRight />
-        </Button>
-      </IntervalBox>
-    </Container>
+          <Button disabled={isSubmitting} type="submit">
+            Próximo passo <ArrowRight />
+          </Button>
+        </IntervalBox>
+      </Container>
+    </>
   );
 }

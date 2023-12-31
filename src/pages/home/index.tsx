@@ -5,10 +5,16 @@ import previewImage from '@/assets/api-preview.png';
 import { ClaimUsernameForm } from './components/ClaimUsernameForm';
 import { Container, Hero, Preview } from './styles';
 import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 
 export default function Home() {
   return (
     <>
+      <NextSeo
+        title="Descomplique sua agenda | Ignite Call"
+        description="Conecte seu calendário e permita que as pessoas marquem agendamentos
+          no seu tempo livre"
+      />
       <Head>
         <title>Ignite Call - Página Inicial</title>
       </Head>
