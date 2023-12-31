@@ -59,6 +59,12 @@ $ cd ignite-call
 # Install the dependencies
 $ npm install
 
+# Run docker container
+$ docker-compose up -d
+
+# Run migrations to create tables in db
+$ npx prisma migrate deploy
+
 # Run the application in development mode
 $ npm run dev
 
