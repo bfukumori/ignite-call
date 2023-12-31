@@ -1,0 +1,13 @@
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      MYSQL_DATABASE: ignitecall
+      MYSQL_RANDOM_ROOT_PASSWORD: true
+    ports:
+      - '3306:3306'
+    volumes:
+      - /path/on/host:/var/lib/mysql
