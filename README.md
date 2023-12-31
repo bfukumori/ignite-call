@@ -1,4 +1,3 @@
-
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/bfukumori/ignite-call?color=%2304D361">
 
@@ -39,21 +38,12 @@ Project developed during the ReactJS Ignite Course from [Rocketseat](https://www
 
 ---
 
-## Features
-
-- [ ]
-- [ ] 
-- [ ] 
-- [ ] 
-
----
-
 ## How it works
 
 ### Pre-requisites
 
 Before you begin, you will need to have the following tools installed on your machine:
-[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/).
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [Docker](https://docs.docker.com/guides/get-started/)
 In addition, it is good to have an editor to work with the code like [VSCode](https://code.visualstudio.com/)
 
 #### Running the web application (Frontend)
@@ -82,11 +72,19 @@ $ npm run dev
 
 The following tools were used in the construction of the project:
 
-#### **Website**  ([React](https://reactjs.org/)  +  [TypeScript](https://www.typescriptlang.org/))
+#### **Website** ([React](https://reactjs.org/) + [TypeScript](https://www.typescriptlang.org/))
 
 - **[Next](https://nextjs.org/)**
+- **[NextAuth](https://next-auth.js.org/)**
+- **[Prisma](https://www.prisma.io/)**
+- **[ReactQuery](https://tanstack.com/query/latest)**
+- **[Dayjs](https://day.js.org/)**
+- **[Axios](https://axios-http.com/)**
+- **[React Hook Form](https://www.react-hook-form.com/)**
+- **[Zod](https://zod.dev/)**
 
 ---
+
 ## Author
 
 <a href="https://www.facebook.com/bruno.fukumori.9/">
@@ -96,7 +94,7 @@ The following tools were used in the construction of the project:
  <sub><b>Bruno Fukumori</b></sub></a> <a href="https://www.facebook.com/bruno.fukumori.9/" title="facebook"></a>
  <br />
 
-[![Twitter Badge](https://img.shields.io/badge/-Twitter-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/hi_fukujp)](https://twitter.com/hi_fukujp) [![Linkedin Badge](https://img.shields.io/badge/-Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/bfukumori/)](https://www.linkedin.com/in/bfukumori/) 
+[![Twitter Badge](https://img.shields.io/badge/-Twitter-1ca0f1?style=flat-square&labelColor=1ca0f1&logo=twitter&logoColor=white&link=https://twitter.com/hi_fukujp)](https://twitter.com/hi_fukujp) [![Linkedin Badge](https://img.shields.io/badge/-Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/bfukumori/)](https://www.linkedin.com/in/bfukumori/)
 [![Gmail Badge](https://img.shields.io/badge/-Gmail-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:brunofukumori@gmail.com)](mailto:brunofukumori@gmail.com)
 
 ---
